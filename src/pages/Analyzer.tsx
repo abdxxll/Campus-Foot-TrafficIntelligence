@@ -51,7 +51,7 @@ export function Analyzer() {
   }, [state.videoId]);
 
   return (
-    <div className="h-[calc(100vh-4rem)] flex flex-col overflow-hidden">
+    <div className="h-[calc(100vh-4rem)] flex flex-col overflow-y-auto">
       <div className="p-6 flex-shrink-0">
         <VideoSelector
           selectedVideoId={state.videoId}
@@ -61,7 +61,7 @@ export function Analyzer() {
         />
       </div>
       
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 p-6">
         <VisualizationWorkspace
           insights={state.insights}
         />

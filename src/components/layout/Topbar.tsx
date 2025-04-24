@@ -91,7 +91,7 @@ export function Topbar({ className, onOpenInsightsFeed }: TopbarProps) {
           <TooltipIconButton
             tooltip="Insights Feed"
             icon={<ListFilterIcon className="h-4 w-4" />}
-            variant="ghost"
+            variant="outline"
             onClick={onOpenInsightsFeed}
             className="lg:hidden"
           />
@@ -99,13 +99,13 @@ export function Topbar({ className, onOpenInsightsFeed }: TopbarProps) {
           <TooltipIconButton
             tooltip="Notifications"
             icon={<BellIcon className="h-4 w-4" />}
-            variant="ghost"
+            variant="outline"
           />
           
           <TooltipIconButton
             tooltip={isDarkMode ? "Light Mode" : "Dark Mode"}
             icon={isDarkMode ? <SunIcon className="h-4 w-4" /> : <MoonIcon className="h-4 w-4" />}
-            variant="ghost"
+            variant="outline"
             onClick={toggleDarkMode}
           />
           

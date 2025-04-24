@@ -49,7 +49,7 @@ export function VisualizationWorkspace({ insights, className }: VisualizationWor
   }
 
   return (
-    <div className={className}>
+    <div className={cn("w-full", className)}>
       {!isExpanded ? (
         <VisualizationGallery
           insights={insights}
@@ -59,7 +59,7 @@ export function VisualizationWorkspace({ insights, className }: VisualizationWor
         />
       ) : (
         <div className="space-y-6">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center sticky top-0 bg-background z-10 py-4">
             <h2 className="text-2xl font-semibold">{selectedInsight?.title}</h2>
             <Button
               variant="ghost"
@@ -70,20 +70,22 @@ export function VisualizationWorkspace({ insights, className }: VisualizationWor
             </Button>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 min-h-0">
             {/* Large Visualization */}
             <div className="lg:col-span-2 bg-card rounded-lg overflow-hidden">
               {selectedInsight && (
-                <img
-                  src={selectedInsight.visualization.imageUrl}
-                  alt={selectedInsight.title}
-                  className="w-full h-full object-contain"
-                />
+                <div className="relative w-full aspect-[16/9]">
+                  <img
+                    src={selectedInsight.visualization.imageUrl}
+                    alt={selectedInsight.title}
+                    className="absolute inset-0 w-full h-full object-contain"
+                  />
+                </div>
               )}
             </div>
 
             {/* Insight Details */}
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-1 overflow-y-auto max-h-[calc(100vh-12rem)]">
               <InsightPane
                 insight={selectedInsight}
                 insights={insights}
