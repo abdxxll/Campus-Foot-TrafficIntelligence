@@ -1,142 +1,30 @@
-import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { 
-  BellIcon, 
-  MoonIcon, 
-  SunIcon, 
-  ListFilterIcon,
-  BarChart3Icon, 
-  VideoIcon, 
-  LayoutDashboardIcon, 
-  UsersIcon, 
-  SettingsIcon,
-} from 'lucide-react';
-import { TooltipIconButton } from '@/components/ui/tooltip-icon-button';
-import { Separator } from '@/components/ui/separator';
-import asuLogo from '@/assets/asu-logo.svg';
+import { HomeIcon } from 'lucide-react';
+import asuFullLogo from '@/assets/ASU-Logo.jpg';
 
 interface TopbarProps {
   className?: string;
-  onOpenInsightsFeed?: () => void;
 }
 
-const navItems = [
-  {
-    icon: <LayoutDashboardIcon className="h-5 w-5" />,
-    label: 'Dashboard',
-    href: '#',
-  },
-  {
-    icon: <VideoIcon className="h-5 w-5" />,
-    label: 'Videos',
-    href: '#',
-    active: true,
-  },
-  {
-    icon: <BarChart3Icon className="h-5 w-5" />,
-    label: 'Analytics',
-    href: '#',
-  },
-  {
-    icon: <UsersIcon className="h-5 w-5" />,
-    label: 'Audience',
-    href: '#',
-  },
-  {
-    icon: <SettingsIcon className="h-5 w-5" />,
-    label: 'Settings',
-    href: '#',
-  },
-];
-
-export function Topbar({ className, onOpenInsightsFeed }: TopbarProps) {
-  const [scrolled, setScrolled] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const toggleDarkMode = () => {
-    const newMode = !isDarkMode;
-    setIsDarkMode(newMode);
-    
-    if (newMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  };
-
+export function Topbar({ className }: TopbarProps) {
   return (
-    <div className={cn(
-      'sticky top-0 z-30 flex flex-col bg-transparent transition-all duration-200',
-      scrolled && 'bg-background/90 backdrop-blur-sm border-b',
-      className
-    )}>
-      <div className="flex h-14 items-center justify-between px-4">
-        <div className="flex items-center gap-2">
-          <VideoIcon className="h-5 w-5 text-primary" />
-          <span className="font-semibold text-lg">CampusInsights</span>
-          <img src={asuLogo} alt="ASU Logo" className="h-8 w-auto ml-2" />
+    <header className={cn('sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60', className)}>
+      <div className="container flex h-14 items-center">
+        <div className="flex items-center gap-4 min-w-[350px]">
+          <img src={asuFullLogo} alt="ASU Logo" className="h-12 w-auto" />
         </div>
-        
-        <div className="flex items-center gap-2">
-          <TooltipIconButton
-            tooltip="Insights Feed"
-            icon={<ListFilterIcon className="h-4 w-4" />}
-            variant="outline"
-            onClick={onOpenInsightsFeed}
-            className="lg:hidden"
-          />
-          
-          <TooltipIconButton
-            tooltip="Notifications"
-            icon={<BellIcon className="h-4 w-4" />}
-            variant="outline"
-          />
-          
-          <TooltipIconButton
-            tooltip={isDarkMode ? "Light Mode" : "Dark Mode"}
-            icon={isDarkMode ? <SunIcon className="h-4 w-4" /> : <MoonIcon className="h-4 w-4" />}
-            variant="outline"
-            onClick={toggleDarkMode}
-          />
-          
-          <Button variant="outline" size="sm" className="hidden md:flex">
-            Export Report
-          </Button>
-          
-          <Button variant="default" size="sm">
-            Share
-          </Button>
-        </div>
+        <nav className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center gap-16">
+          <a href="#" className="flex flex-col items-center text-gray-900 font-medium px-2 py-1 border-b-2 border-yellow-400">
+            <HomeIcon className="h-5 w-5 mb-1" />
+            <span>Dashboard</span>
+          </a>
+          <a href="#" className="text-gray-700 hover:text-gray-900 font-medium px-2 py-1">Videos</a>
+          <a href="#" className="text-gray-700 hover:text-gray-900 font-medium px-2 py-1">Analytics</a>
+          <a href="#" className="text-gray-700 hover:text-gray-900 font-medium px-2 py-1">Audience</a>
+          <a href="#" className="text-gray-700 hover:text-gray-900 font-medium px-2 py-1">Settings</a>
+        </nav>
+        {/* Right section intentionally left empty for symmetry */}
       </div>
-      <Separator />
-      <div className="flex h-12 items-center px-4 gap-1">
-        {navItems.map((item, index) => (
-          <Button
-            key={index}
-            variant={item.active ? "default" : "ghost"}
-            className={cn(
-              "h-9 gap-2",
-              item.active && "font-medium"
-            )}
-            asChild
-          >
-            <a href={item.href}>
-              {item.icon}
-              <span>{item.label}</span>
-            </a>
-          </Button>
-        ))}
-      </div>
-    </div>
+    </header>
   );
 }

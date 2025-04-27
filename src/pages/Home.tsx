@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { Button } from '@/components/ui/button';
-import { ArrowRightIcon, CameraIcon, MapIcon, TargetIcon, ZapIcon, ShieldIcon, ClockIcon } from 'lucide-react';
+import { ArrowRightIcon, CameraIcon, MapIcon, TargetIcon, ZapIcon, ShieldIcon } from 'lucide-react';
 import { CONTAINER_CLASS } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 
@@ -19,7 +19,7 @@ export function Home({ onStartAnalyzing }: HomeProps) {
   return (
     <div>
       {/* Hero Section */}
-      <section className="py-20 md:py-32">
+      <section className="pt-20 md:pt-32 pb-10 md:pb-16">
         <div className={cn(CONTAINER_CLASS, "text-center")}>
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight mb-6">
             Campus Foot-Traffic
@@ -41,7 +41,7 @@ export function Home({ onStartAnalyzing }: HomeProps) {
       </section>
 
       {/* How It Works */}
-      <section className="py-16 bg-muted/40">
+      <section className="pt-8 pb-16 bg-muted/40">
         <div className={CONTAINER_CLASS}>
           <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
           

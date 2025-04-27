@@ -22,7 +22,7 @@ export function Analyzer() {
     }));
   };
 
-  const handleGenerateInsights = (startTime: Date, endTime: Date) => {
+  const handleGenerateInsights = () => {
     if (!state.videoId) return;
     
     setState(prev => ({
@@ -46,7 +46,7 @@ export function Analyzer() {
   // Auto-generate insights if video is selected
   useEffect(() => {
     if (state.videoId && state.status === 'idle') {
-      handleGenerateInsights(new Date(), new Date());
+      handleGenerateInsights();
     }
   }, [state.videoId]);
 
