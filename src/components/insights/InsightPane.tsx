@@ -64,17 +64,44 @@ export function InsightPane({ insight, insights, onNavigate, className }: Insigh
         <div className="flex-1 p-4 overflow-auto">
           <TabsContent value="takeaway" className="mt-0 h-full">
             <h4 className="text-sm font-medium mb-2">Key Takeaway</h4>
-            <p>{insight.keyTakeaway}</p>
+            {insight.keyTakeaway.includes("•") ? (
+              <ul className="list-disc pl-5">
+                {insight.keyTakeaway.split("•").map((item, i) => {
+                  const text = item.trim();
+                  return text ? <li key={i}>{text}</li> : null;
+                })}
+              </ul>
+            ) : (
+              <p>{insight.keyTakeaway}</p>
+            )}
           </TabsContent>
 
           <TabsContent value="action" className="mt-0 h-full">
             <h4 className="text-sm font-medium mb-2">Recommended Action</h4>
-            <p>{insight.recommendedAction}</p>
+            {insight.recommendedAction.includes("•") ? (
+              <ul className="list-disc pl-5">
+                {insight.recommendedAction.split("•").map((item, i) => {
+                  const text = item.trim();
+                  return text ? <li key={i}>{text}</li> : null;
+                })}
+              </ul>
+            ) : (
+              <p>{insight.recommendedAction}</p>
+            )}
           </TabsContent>
 
           <TabsContent value="details" className="mt-0 h-full">
             <h4 className="text-sm font-medium mb-2">Detailed Analysis</h4>
-            <p>{insight.details}</p>
+            {insight.details.includes("•") ? (
+              <ul className="list-disc pl-5">
+                {insight.details.split("•").map((item, i) => {
+                  const text = item.trim();
+                  return text ? <li key={i}>{text}</li> : null;
+                })}
+              </ul>
+            ) : (
+              <p>{insight.details}</p>
+            )}
           </TabsContent>
 
           <TabsContent value="data" className="mt-0 h-full">
