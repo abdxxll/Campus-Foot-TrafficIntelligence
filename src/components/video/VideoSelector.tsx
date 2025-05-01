@@ -2,8 +2,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Button } from '@/components/ui/button';
 import { videos } from '@/data/videos';
 import { Loader2Icon } from 'lucide-react';
-import { TimeFrameSelector } from './TimeFrameSelector';
 import { useState } from 'react';
+import { TimeFrameSelector } from './TimeFrameSelector';
 
 interface VideoSelectorProps {
   selectedVideoId: string | null;
@@ -37,20 +37,20 @@ export function VideoSelector({
   };
 
   return (
-    <div className={className}>
-      <div className="mb-2">
+    <div className={`flex flex-col items-center ${className}`}>
+      <div className="mb-6 text-center">
         <h2 className="text-xl font-semibold">Location Analytics</h2>
         <p className="text-sm text-muted-foreground">
           Select a location and time frame to analyze its activity
         </p>
       </div>
 
-      <div className="space-y-4">
+      <div className="flex flex-col items-center space-y-4 w-full max-w-[400px]">
         <Select
           value={selectedVideoId || ''}
           onValueChange={onSelectVideo}
         >
-          <SelectTrigger className="w-full">
+          <SelectTrigger className="h-9 w-[400px]">
             <SelectValue placeholder="Choose a location" />
           </SelectTrigger>
           <SelectContent>
@@ -71,7 +71,7 @@ export function VideoSelector({
         <Button 
           onClick={handleGenerateInsights} 
           disabled={!selectedVideoId || !timeFrameSelected || isLoading}
-          className="w-full"
+          className="h-9 px-4 w-[250px]"
         >
           {isLoading ? (
             <>

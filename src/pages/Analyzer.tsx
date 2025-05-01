@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { VideoSelector } from '@/components/video/VideoSelector';
 import { VisualizationWorkspace } from '@/components/insights/VisualizationWorkspace';
 import { mockInsights } from '@/data/insights';
@@ -43,15 +43,8 @@ export function Analyzer() {
     }, 1500);
   };
 
-  // Auto-generate insights if video is selected
-  useEffect(() => {
-    if (state.videoId && state.status === 'idle') {
-      handleGenerateInsights(new Date(), new Date());
-    }
-  }, [state.videoId]);
-
   return (
-    <div className="h-[calc(100vh-4rem)] flex flex-col overflow-hidden">
+    <div className="h-[calc(100vh-4rem)] flex flex-col overflow-y-auto">
       <div className="p-6 flex-shrink-0">
         <VideoSelector
           selectedVideoId={state.videoId}
@@ -61,7 +54,7 @@ export function Analyzer() {
         />
       </div>
       
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 p-6">
         <VisualizationWorkspace
           insights={state.insights}
         />
